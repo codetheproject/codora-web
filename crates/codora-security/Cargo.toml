@@ -1,0 +1,24 @@
+[package]
+name = "codora-security"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Authentication and Authorization library written in rust"
+repository = { workspace = true }
+keywords = ["authentication", "authorization"]
+categories = ["web-programming", "authentication"]
+authors = { workspace = true }
+
+
+[features]
+
+[dependencies]
+futures-util = "0.3.31"
+http = "1.3.1"
+extension = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["full"] }
+
+[lints]
+workspace = true

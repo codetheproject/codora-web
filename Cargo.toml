@@ -1,0 +1,20 @@
+[workspace]
+members = ["crates/*"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Ship Rust application faster than you could ever"
+readme = "README.md"
+homepage = "https://github.com/codetheproject/codora-web"
+documentation = "https://docs.rs/codora"
+repository = "https://github.com/codetheproject/codora-web"
+keywords = ["web", "security"]
+categories = ["web-programming"]
+authors = ["West Sheriff <west.sh.mail@gmail.com>"]
+
+[workspace.dependencies]
+
+[workspace.lints]
