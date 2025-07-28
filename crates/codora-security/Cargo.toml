@@ -11,14 +11,31 @@ authors = { workspace = true }
 
 
 [features]
+# axum = ["dep:tower-layer", "dep:tower-service"]
 
 [dependencies]
 futures-util = "0.3.31"
 http = "1.3.1"
-extension = { workspace = true }
+tower-layer = { version = "0.3.3" }
+tower-service = { version = "0.3.3" }
+tracing = { workspace = true, features = ["async-await", "log-always"] }
+codora-foundation = { workspace = true }
+uuid = { workspace = true, features = ["v4"] }
+thiserror = { workspace = true }
+derive_more = { workspace = true, features = ["display"] }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+
 
 [dev-dependencies]
+tracing-subscriber = { workspace = true, features = ["env-filter"] }
 tokio = { workspace = true, features = ["full"] }
+anyhow = { workspace = true }
+tower = { workspace = true }
+http-body-util = "0.1.3"
+hyper-util = "0.1.14"
+mime = "0.3.17"
+tower-http = "0.6.6"
 
 [lints]
 workspace = true

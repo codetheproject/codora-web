@@ -37,9 +37,11 @@ pub trait Handler<Request> {
 }
 
 pub mod handler {
+    //! Document this module!
     use crate::authentication::{Context, claim::Claim};
 
     pub struct Handler<H> {
+        // Have a way emit event definently
         handler: H,
     }
 
@@ -55,6 +57,7 @@ pub mod handler {
 }
 
 pub mod sign_in {
+    //! Document this module too!
     use super::sign_out::SignOutHandler;
     use crate::authentication::{Context, claim::Claim};
     use std::future::Future;
@@ -65,26 +68,14 @@ pub mod sign_in {
         fn sign_in(&self, contex: &Context<Request>, claim: &Claim) -> impl Future<Output = Result<Self::Success, Self::Error>> + Send;
     }
 
-    /*
-       We want the api to be like
-
-       // Sign in can create it self from request part via state a state populated when the application starts and shared among the request
-       // SignIn works with any T as long as T::Option is in State which would be used to create T
-       async fn get_users(sign_in_ctx: SignIn<Cookie>, claim: Context<Parts>) -> Response {
-           let claim = Claim::default();
-           let res = sign_in_ctx.sign_in(context, claim).await?;
-
-           Ok(res)
-       }
-    */
-    #[derive(Clone)]
+    #[derive(Clone, new)]
     pub struct SignIn<H> {
         handler: H,
         // Other Stuff goes in here
     }
 
     impl<H> SignIn<H> {
-        async fn sign_in<Request>(&self, req: &Context<Request>, claim: &Claim) -> Result<H::Success, H::Error>
+        pub async fn sign_in<Request>(&self, req: &Context<Request>, claim: &Claim) -> Result<H::Success, H::Error>
         where
             H: SignInHandler<Request>,
         {
@@ -95,11 +86,12 @@ pub mod sign_in {
 }
 //
 pub mod sign_out {
+    //! Document this module!
     use crate::authentication::{Context, claim::Claim, handler::Handler};
     use std::future::Future;
 
     pub trait SignOutHandler<Request>: Handler<Request> {
-        fn sign_out(&self, ctx: Context<Request>, claim: &Claim) -> impl Future<Output = Result<(), Self::Error>> + Send;
+        fn sign_out(&self, ctx: &Context<Request>, claim: &Claim) -> impl Future<Output = Result<(), Self::Error>> + Send;
     }
 
     #[derive(Clone)]

@@ -164,9 +164,7 @@ impl State {
     /// ```
     #[inline]
     pub fn is_empty(&self) -> bool {
-        self.properties
-            .as_ref()
-            .map_or(true, |properties| properties.is_empty())
+        self.properties.as_ref().map_or(true, |properties| properties.is_empty())
     }
 
     /// Get the len of the state.
@@ -182,9 +180,7 @@ impl State {
     /// ```
     #[inline]
     pub fn len(&self) -> usize {
-        self.properties
-            .as_ref()
-            .map_or(0, |properties| properties.len())
+        self.properties.as_ref().map_or(0, |properties| properties.len())
     }
 
     /// Clear the `State`.

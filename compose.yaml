@@ -1,0 +1,7 @@
+# Define all the services
+services:
+  codora_web:
+   buld: .
+  #  Setup codora api here as well 
+  codora_api:
+   build: .
